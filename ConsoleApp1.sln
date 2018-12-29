@@ -5,11 +5,19 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QQMusic.hzexe.com", "QQMusic.hzexe.com\QQMusic.hzexe.com.csproj", "{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic-Console", "Example\Basic-Console\Basic-Console\Basic-Console.csproj", "{BEC99E2A-483C-4B4D-92BB-4573CDC28165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic-Console", "Example\Basic-Console\Basic-Console.csproj", "{BEC99E2A-483C-4B4D-92BB-4573CDC28165}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{E81A2346-2FEA-4BA0-A994-C6D7A5E2164F}"
+	ProjectSection(SolutionItems) = preProject
+		Example\README.md = Example\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "Example\WindowsFormsApp\WindowsFormsApp.csproj", "{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7CED078B-2E3F-4F41-A887-ACB8892E3DBC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

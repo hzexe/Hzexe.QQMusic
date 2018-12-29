@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\QQMusic.hzexe.com\QQMusic.hzexe.com.csproj" />
+    <ProjectReference Include="..\..\QQMusic.hzexe.com\QQMusic.hzexe.com.csproj" />
   </ItemGroup>
 
   <ItemGroup>
