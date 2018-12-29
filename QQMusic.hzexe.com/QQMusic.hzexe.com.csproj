@@ -10,8 +10,8 @@
     <Product>QQMusic lib project</Product>
     <Description>无需账号或会员从QQ音乐下载音乐文件,支持无损格式</Description>
     <PackageTags>QQ music</PackageTags>
-    <PackageProjectUrl>https://github.com/OpenTl</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/OpenTl/OpenTl.ClientApi</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/hzexe/Hzexe.QQMusic</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hzexe/Hzexe.QQMusic</RepositoryUrl>
     
 
   </PropertyGroup>
