@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
+    <Title>Download music from QQ music</Title>
+    <Version>0.1.0</Version>
+    <PackageId>Hzexe.QQMusic</PackageId>
+      <Authors>Hzexe</Authors>
+    <Company />
+    <Product>QQMusic lib project</Product>
+    <Description>无需账号或会员从QQ音乐下载音乐文件,支持无损格式</Description>
+    <PackageTags>QQ music</PackageTags>
+    <PackageProjectUrl>https://github.com/OpenTl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OpenTl/OpenTl.ClientApi</RepositoryUrl>
+    
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

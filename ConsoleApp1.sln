@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QQMusic.hzexe.com", "QQMusic.hzexe.com\QQMusic.hzexe.com.csproj", "{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic-Console", "Example\Basic-Console\Basic-Console\Basic-Console.csproj", "{BEC99E2A-483C-4B4D-92BB-4573CDC28165}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{E81A2346-2FEA-4BA0-A994-C6D7A5E2164F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "Example\WindowsFormsApp\WindowsFormsApp.csproj", "{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF6D75D1-72D8-4CEE-A264-C0A8E0DBAA21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC99E2A-483C-4B4D-92BB-4573CDC28165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC99E2A-483C-4B4D-92BB-4573CDC28165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC99E2A-483C-4B4D-92BB-4573CDC28165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC99E2A-483C-4B4D-92BB-4573CDC28165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEC99E2A-483C-4B4D-92BB-4573CDC28165} = {E81A2346-2FEA-4BA0-A994-C6D7A5E2164F}
+		{5D5FA3EA-F7BA-4FD9-A30D-5F6F936199B7} = {E81A2346-2FEA-4BA0-A994-C6D7A5E2164F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BFD649C-C88C-48C3-9E77-906EF3034ECB}
+	EndGlobalSection
+EndGlobal
