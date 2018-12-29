@@ -1,14 +1,14 @@
 # Hzexe.QQMusic
-Ò»¸ö½âÎöQQÒôÀÖµÄ¿â,Ö§³ÖÎÞËðÆ·ÖÊ½âÎöºÍÏÂÔØ
-¹¦ÄÜ:
-°´¸èÃûËÑË÷
-ÏÂÔØÖ¸¶¨¸èÇúµÄÖ¸¶¨Æ·ÖÊÎÄ¼þ
-ÏÂÔØ¸è´Ê
+è§£æžQQéŸ³ä¹çš„åº“,æ”¯æŒæ— æŸå“è´¨è§£æžå’Œä¸‹è½½
+åŠŸèƒ½:
+æŒ‰æ­Œåæœç´¢
+ä¸‹è½½æŒ‡å®šæ­Œæ›²çš„æŒ‡å®šå“è´¨æ–‡ä»¶
+ä¸‹è½½æ­Œè¯
 
-```
-Ê¹ÓÃÊ¾Àý
+
+# ä½¿ç”¨ç¤ºä¾‹
 [https://github.com/hzexe/Hzexe.QQMusic/tree/master/Example](Example)
 
-```
-ÆäËü
-ÏÞ¼¼Êõ½»Á÷,²»¶ÔÊ¹ÓÃºó¹û¸ºÔð
+
+# å…¶å®ƒ
+é™æŠ€æœ¯äº¤æµ,ä¸å¯¹ä½¿ç”¨åŽæžœè´Ÿè´£
