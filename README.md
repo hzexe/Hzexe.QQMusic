@@ -9,7 +9,7 @@
 
 安装:
 ---
-NuGet:Install-Package QQMusicLib
+NuGet:Install-Package QQMusicLib<br />
 .Net Cli:dotnet add package QQMusicLib
 
 使用示例
