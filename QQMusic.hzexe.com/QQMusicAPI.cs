@@ -7,10 +7,11 @@ using Hzexe.QQMusic.Model;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
-
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LibTest")]
 namespace Hzexe.QQMusic
 {
-    public class QQMusicAPI
+
+    public class QQMusicAPI : IQQMusicAPI
     {
         const int uin = 5008611; //随便写个QQ号码
         const string guid = "1234567890";  //随机的一个字符串
@@ -107,8 +108,8 @@ namespace Hzexe.QQMusic
                 {
                     var bstr = res.lyric;
                     var data = Convert.FromBase64String(bstr);
-                   await outstream.WriteAsync(data, 0, data.Length);
-                   // System.IO.File.WriteAllBytes(lrcfilename, data);
+                    await outstream.WriteAsync(data, 0, data.Length);
+                    // System.IO.File.WriteAllBytes(lrcfilename, data);
                 }
                 return res.code == 0;
             }
@@ -146,7 +147,7 @@ namespace Hzexe.QQMusic
                 if (res.code == 0)
                 {
                     var bstr = res.lyric;
-                    var data=Convert.FromBase64String(bstr);
+                    var data = Convert.FromBase64String(bstr);
                     System.IO.File.WriteAllBytes(lrcfilename, data);
                 }
                 return res.code == 0;
@@ -205,7 +206,7 @@ namespace Hzexe.QQMusic
             {
                 string filefull = System.IO.Path.Combine(songdir, musicfilename);
                 fs = System.IO.File.OpenWrite(filefull);
-                await downloadSongAsync(songItem,fs, downloadType);
+                await downloadSongAsync(songItem, fs, downloadType);
             }
             catch
             {
