@@ -1,4 +1,4 @@
-# Hzexe.QQMusic
+# Hzexe.QQMusic [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1)
 解析QQ音乐的库,支持无损品质解析和下载<br />
 
 功能:
