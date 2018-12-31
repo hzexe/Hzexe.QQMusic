@@ -194,7 +194,6 @@ namespace Hzexe.QQMusic
         /// </summary>
         /// <param name="songItem">指定的歌曲</param>
         /// <param name="songdir">存放指定的目录</param>
-        /// <param name="vkey">音乐对象</param>
         /// <param name="downloadType">文件类型</param>
         /// <returns>Task</returns>
         public async Task downloadSongAsync(SongItem songItem, string songdir, IFiletype downloadType)

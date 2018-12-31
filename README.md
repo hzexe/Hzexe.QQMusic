@@ -7,6 +7,10 @@
 下载指定歌曲的指定品质文件<br />
 下载歌词<br />
 
+安装:
+---
+NuGet:Install-Package QQMusicLib
+.Net Cli:dotnet add package QQMusicLib
 
 使用示例
 ---

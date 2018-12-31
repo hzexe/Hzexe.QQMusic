@@ -1,19 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6;netstandard2.0;net45;net451;net452;net46;net461</TargetFrameworks>
     <Title>Download music from QQ music</Title>
-    <Version>0.1.0</Version>
-    <PackageId>Hzexe.QQMusic</PackageId>
-      <Authors>Hzexe</Authors>
+    <Version>0.1</Version>
+    <AssemblyVersion>0.1.*</AssemblyVersion>
+    <PackageId>QQMusicLib</PackageId>
+    <Authors>Hzexe</Authors>
     <Company />
     <Product>QQMusic lib project</Product>
     <Description>无需账号或会员从QQ音乐下载音乐文件,支持无损格式</Description>
-    <PackageTags>QQ music</PackageTags>
+    <PackageTags>QQ,music,QQ音乐</PackageTags>
     <PackageProjectUrl>https://github.com/hzexe/Hzexe.QQMusic</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hzexe/Hzexe.QQMusic</RepositoryUrl>
-    
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>MIT</Copyright>
+    <Deterministic>False</Deterministic>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +36,24 @@
       <Version>2.2.29</Version>
     </PackageReference>
   </ItemGroup>
-
+  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net452'">
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>
