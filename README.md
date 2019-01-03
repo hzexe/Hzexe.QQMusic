@@ -1,5 +1,12 @@
-# Hzexe.QQMusic [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1)
+# Hzexe.QQMusic
 解析QQ音乐的库,支持无损品质解析和下载<br />
+
+[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-blue.svg)](https://t.me/hzexe)
+[![license](https://img.shields.io/github/license/hzexe/Hzexe.QQMusic.svg)](https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/LICENSE)
+
+|Package|Branch|Build|
+|:-----:|:----:|:---:|
+| [NuGet ![NuGet Release](https://img.shields.io/nuget/vpre/QQMusicLib.svg?label=QQMusicLib&maxAge=3600)](https://www.nuget.org/packages/QQMusicLib/) | `master` |  [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI?branchName=master)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1) |
 
 功能:
 ---
@@ -9,8 +16,16 @@
 
 安装:
 ---
-NuGet:Install-Package QQMusicLib<br />
-.Net Cli:dotnet add package QQMusicLib
+Package manager:
+
+```powershell
+Install-Package QQMusicLib
+```
+.NET CLI:
+
+```bash
+dotnet add package QQMusicLib
+```
 
 使用示例
 ---
