@@ -14,6 +14,11 @@
 下载指定歌曲的指定品质文件<br />
 下载歌词<br />
 
+演示截图
+---
+.. image:: https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/Example/eg.png
+
+
 安装:
 ---
 Package manager:

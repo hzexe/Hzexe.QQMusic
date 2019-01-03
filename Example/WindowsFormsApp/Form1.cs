@@ -83,7 +83,7 @@ namespace WindowsFormsApp
 
         private void MediaPlayer_Buffering(object sender, Vlc.DotNet.Core.VlcMediaPlayerBufferingEventArgs e)
         {
-           
+
         }
 
         private void doform(Action action)
@@ -131,6 +131,7 @@ namespace WindowsFormsApp
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (0 > e.RowIndex) return;
             Hzexe.QQMusic.Model.SongItem si = (dataGridView1.Rows[e.RowIndex].DataBoundItem as TableModel).SongItem;
             var col = dataGridView1.Columns[e.ColumnIndex];
 
@@ -194,7 +195,8 @@ namespace WindowsFormsApp
             var si = tag.si as SongItem;
             IFiletype type = tag.ft as IFiletype;
 
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 var stream = saveFileDialog1.OpenFile();
                 await api.downloadSongAsync(si, stream, type);
                 stream.Dispose();
@@ -202,6 +204,15 @@ namespace WindowsFormsApp
                 MessageBox.Show("下载完成");
             });
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/hzexe/Hzexe.QQMusic");
+            }
+            catch { }
         }
     }
 }

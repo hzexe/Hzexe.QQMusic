@@ -33,27 +33,28 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.albumNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.singerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mp3_128k = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Mp3_320k = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Ape = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Flac = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Play = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tableModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.albumNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.singerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -65,6 +66,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             // 
@@ -121,6 +123,27 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "歌名";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // albumNameDataGridViewTextBoxColumn
+            // 
+            this.albumNameDataGridViewTextBoxColumn.DataPropertyName = "AlbumName";
+            this.albumNameDataGridViewTextBoxColumn.HeaderText = "专辑";
+            this.albumNameDataGridViewTextBoxColumn.Name = "albumNameDataGridViewTextBoxColumn";
+            this.albumNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // singerDataGridViewTextBoxColumn
+            // 
+            this.singerDataGridViewTextBoxColumn.DataPropertyName = "Singer";
+            this.singerDataGridViewTextBoxColumn.HeaderText = "歌手";
+            this.singerDataGridViewTextBoxColumn.Name = "singerDataGridViewTextBoxColumn";
+            this.singerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Mp3_128k
             // 
             this.Mp3_128k.DataPropertyName = "Mp3_128k";
@@ -156,6 +179,10 @@
             this.Play.Name = "Play";
             this.Play.ReadOnly = true;
             // 
+            // tableModelBindingSource
+            // 
+            this.tableModelBindingSource.DataSource = typeof(WindowsFormsApp.TableModel);
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Title = "选择保存的路径和文件名";
@@ -190,30 +217,16 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(18, 17);
             this.toolStripStatusLabel2.Text = "--";
             // 
-            // nameDataGridViewTextBoxColumn
+            // linkLabel1
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "歌名";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // albumNameDataGridViewTextBoxColumn
-            // 
-            this.albumNameDataGridViewTextBoxColumn.DataPropertyName = "AlbumName";
-            this.albumNameDataGridViewTextBoxColumn.HeaderText = "专辑";
-            this.albumNameDataGridViewTextBoxColumn.Name = "albumNameDataGridViewTextBoxColumn";
-            this.albumNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // singerDataGridViewTextBoxColumn
-            // 
-            this.singerDataGridViewTextBoxColumn.DataPropertyName = "Singer";
-            this.singerDataGridViewTextBoxColumn.HeaderText = "歌手";
-            this.singerDataGridViewTextBoxColumn.Name = "singerDataGridViewTextBoxColumn";
-            this.singerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tableModelBindingSource
-            // 
-            this.tableModelBindingSource.DataSource = typeof(WindowsFormsApp.TableModel);
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(633, 17);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "GitHub";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 
@@ -230,9 +243,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +270,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
