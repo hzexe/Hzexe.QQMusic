@@ -16,8 +16,7 @@
 
 演示截图
 ---
-.. image:: https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/Example/eg.png
-
+![截图](https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/Example/eg.png)
 
 安装:
 ---
