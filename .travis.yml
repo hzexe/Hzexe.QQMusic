@@ -15,6 +15,6 @@ install:
 script:
   - dotnet build -f netstandard1.6 /p:Configuration=Release QQMusic.hzexe.com
   - dotnet build -f netstandard2.0 /p:Configuration=Release QQMusic.hzexe.com
-  - dotnet build /p:Configuration=Release  Example/Basic-Console
-  - dotnet build /p:Configuration=Release LibTest
-  - dotnet test LibTest
+ # - dotnet build /p:Configuration=Release  Example/Basic-Console
+ # - dotnet build /p:Configuration=Release LibTest
+ # - dotnet test LibTest
