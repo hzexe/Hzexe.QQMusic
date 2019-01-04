@@ -48,7 +48,7 @@ svn checkout https://github.com/hzexe/Hzexe.QQMusic.git
 
 * /home/android/dotnet/sdk/2.2.101/Microsoft.Common.CurrentVersion.targets(1179,5): error MSB3644: The reference assemblies for framework ".NETFramework,Version=v4.5" were not found. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK or Targeting Pack installed. Note that assemblies will be resolved from the Global Assembly Cache (GAC) and will be used in place of reference assemblies. Therefore your assembly may not be correctly targeted for the framework you intend. [/home/android/Hzexe.QQMusic/Example/WindowsFormsApp/WindowsFormsApp.csproj] *
 
-:使用文本编辑工具打开QQMusic.hzexe.com.csproj,修改[TargetFrameworks!](https://github.com/hzexe/Hzexe.QQMusic/blob/e5fd85d54a792093c4ec6aa959e1e8566f57d8d7/QQMusic.hzexe.com/QQMusic.hzexe.com.csproj#L4)
+:使用文本编辑工具打开QQMusic.hzexe.com.csproj,修改[TargetFrameworks](https://github.com/hzexe/Hzexe.QQMusic/blob/e5fd85d54a792093c4ec6aa959e1e8566f57d8d7/QQMusic.hzexe.com/QQMusic.hzexe.com.csproj#L4)
 比如在非Windows下修改成
 ```xml
 <TargetFrameworks>netstandard1.6;netstandard2.0</TargetFrameworks>
@@ -58,11 +58,12 @@ svn checkout https://github.com/hzexe/Hzexe.QQMusic.git
 <TargetFrameworks>net45</TargetFrameworks>
 ```
 等
+
 3. 编译工具执行编译
     
     1. Visual Studio 2017
-	    打开解决方案直接编译成Release或在开发人员命令提示符下运行msbuild /p:Configuration=Release
-	2. .NET Core（2.1或以上版本,已知在Linux Arm64下需要3.0或以上版本[coreclr issues 19578!](https://github.com/dotnet/coreclr/issues/19578#issuecomment-427592817)）
+	    打开解决方案直接编译成Release或在开发人员命令提示符下运行msbuild /p:Configuration=Release<br />
+	2. .NET Core（2.1或以上版本,已知在Linux Arm64下需要3.0或以上版本[coreclr_issues_19578](https://github.com/dotnet/coreclr/issues/19578#issuecomment-427592817)
 		dotnet build -f netstandard1.6 QQMusic.hzexe.com
 
 其它
