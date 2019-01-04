@@ -64,9 +64,9 @@ svn checkout https://github.com/hzexe/Hzexe.QQMusic.git
     1. Visual Studio 2017
 	    打开解决方案直接编译成Release或在开发人员命令提示符下运行msbuild /p:Configuration=Release<br />
 	2. .NET Core（2.1或以上版本,已知在Linux Arm64下需要3.0或以上版本[coreclr_issues_19578](https://github.com/dotnet/coreclr/issues/19578#issuecomment-427592817)<br />
-		    ```bash
+```bash
             dotnet build -f netstandard1.6 QQMusic.hzexe.com
-            ```
+```
 
 ## 其它
 限技术交流,不对使用本库后果负责
