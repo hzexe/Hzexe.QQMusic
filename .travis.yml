@@ -1,15 +1,20 @@
-language: csharp
-solution: Hzexe.QQMusic.sln
+dist: xenial
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y wget
+  - sudo apt-get install -y tar
+  - wget https://download.visualstudio.microsoft.com/download/pr/b1f2ff81-9e2e-4161-b984-7107c6a2b634/a0cba033134a5c1875f4971738823e71/dotnet-sdk-3.0.100-preview-009812-linux-arm64.tar.gz
+  - mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-3.0.100-preview-009812-linux-arm64.tar.gz -C $HOME/dotnet
+  - export DOTNET_ROOT=$HOME/dotnet
+  - export PATH=$PATH:$HOME/dotnet
 
 install:
    - dotnet restore
 
-mono: none
-dotnet: 2.1.502
 script:
   - dotnet build -f netstandard1.6 /p:Configuration=Release QQMusic.hzexe.com
-  - dotnet build -f netstandard2.0/p:Configuration=Release QQMusic.hzexe.com
-  - dotnet build /p:Configuration=Release  Example/Basic-Console
+  - dotnet build -f netstandard2.0 /p:Configuration=Release QQMusic.hzexe.com
   - dotnet build /p:Configuration=Release  Example/Basic-Console
   - dotnet build /p:Configuration=Release LibTest
   - dotnet test LibTest

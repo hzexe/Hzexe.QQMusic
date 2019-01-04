@@ -1,0 +1,8 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+clone_folder: c:\project\Hzexe.QQMusic
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+deploy: off
