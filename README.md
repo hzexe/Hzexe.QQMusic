@@ -4,9 +4,9 @@
 [![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-blue.svg)](https://t.me/hzexe)
 [![license](https://img.shields.io/github/license/hzexe/Hzexe.QQMusic.svg)](https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/LICENSE)
 
-|Package|Branch|Visual Studio 2017|Appveyor|
+|Package|Branch|Visual Studio 2017|Linux .Net Core|
 |:-----:|:----:|:---:|:---:|
-| [NuGet ![NuGet Release](https://img.shields.io/nuget/vpre/QQMusicLib.svg?label=QQMusicLib&maxAge=3600)](https://www.nuget.org/packages/QQMusicLib/) | `master` |  [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI?branchName=master)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1) | [![Build status](https://ci.appveyor.com/api/projects/status/6y3vc0nbnuua6cx6/branch/master?svg=true)](https://ci.appveyor.com/project/hzexe/hzexe-qqmusic/branch/master) |
+| [NuGet ![NuGet Release](https://img.shields.io/nuget/vpre/QQMusicLib.svg?label=QQMusicLib&maxAge=3600)](https://www.nuget.org/packages/QQMusicLib/) | `master` |  [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI?branchName=master)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1) | [![Build Status](https://travis-ci.com/hzexe/Hzexe.QQMusic.svg?branch=master)](https://travis-ci.com/hzexe/Hzexe.QQMusic) |
 
 ## 功能
 * 按歌名搜索
