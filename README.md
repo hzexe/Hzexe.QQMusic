@@ -46,7 +46,7 @@ svn checkout https://github.com/hzexe/Hzexe.QQMusic.git
 2. 修改以满足你需求的目标运行库
 项目配置成支持多种.NET运行时，如果编译环境缺少相关SDK，导致编译部分失败或完全失败.错误号MSB3644，提示大致是：
 
-_ /home/android/dotnet/sdk/2.2.101/Microsoft.Common.CurrentVersion.targets(1179,5): error MSB3644: The reference assemblies for framework **NETFramework,Version=v4.5" were not found**. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK or Targeting Pack installed. Note that assemblies will be resolved from the Global Assembly Cache (GAC) and will be used in place of reference assemblies. Therefore your assembly may not be correctly targeted for the framework you intend. [/home/android/Hzexe.QQMusic/Example/WindowsFormsApp/WindowsFormsApp.csproj] _
+    /home/android/dotnet/sdk/2.2.101/Microsoft.Common.CurrentVersion.targets(1179,5): error MSB3644: The reference assemblies for framework **NETFramework,Version=v4.5" were not found**. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK or Targeting Pack installed. Note that assemblies will be resolved from the Global Assembly Cache (GAC) and will be used in place of reference assemblies. Therefore your assembly may not be correctly targeted for the framework you intend. [/home/android/Hzexe.QQMusic/Example/WindowsFormsApp/WindowsFormsApp.csproj]
 
 :使用文本编辑工具打开QQMusic.hzexe.com.csproj,修改[TargetFrameworks](https://github.com/hzexe/Hzexe.QQMusic/blob/e5fd85d54a792093c4ec6aa959e1e8566f57d8d7/QQMusic.hzexe.com/QQMusic.hzexe.com.csproj#L4)
 比如在非Windows下修改成
@@ -63,7 +63,7 @@ _ /home/android/dotnet/sdk/2.2.101/Microsoft.Common.CurrentVersion.targets(1179,
     
     1. Visual Studio 2017
 	    打开解决方案直接编译成Release或在开发人员命令提示符下运行msbuild /p:Configuration=Release<br />
-	2. .NET Core（2.1或以上版本,已知在Linux Arm64下需要3.0或以上版本[coreclr_issues_19578](https://github.com/dotnet/coreclr/issues/19578#issuecomment-427592817)
+	2. .NET Core（2.1或以上版本,已知在Linux Arm64下需要3.0或以上版本[coreclr_issues_19578](https://github.com/dotnet/coreclr/issues/19578#issuecomment-427592817)<br />
 		    ```bash
             dotnet build -f netstandard1.6 QQMusic.hzexe.com
             ```
