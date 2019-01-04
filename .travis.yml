@@ -1,0 +1,13 @@
+language: csharp
+solution: Hzexe.QQMusic.sln
+
+install:
+   - dotnet restore
+
+mono: none
+dotnet: 2.1.502
+script:
+  - dotnet build /p:Configuration=Release QQMusic.hzexe.com
+  - dotnet build /p:Configuration=Release Example/Basic-Console
+  - dotnet build /p:Configuration=Release LibTest
+  - dotnet test LibTest

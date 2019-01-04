@@ -16,10 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "Example\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7CED078B-2E3F-4F41-A887-ACB8892E3DBC}"
 	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTest", "LibTest\LibTest.csproj", "{8E7500ED-A76E-4B00-8AE0-76125A9EFD7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibTest", "LibTest\LibTest.csproj", "{8E7500ED-A76E-4B00-8AE0-76125A9EFD7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
