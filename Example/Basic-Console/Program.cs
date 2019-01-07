@@ -3,6 +3,7 @@ using Hzexe.QQMusic;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data;
+using Hzexe.QQMusic.Model;
 
 namespace Basic_Console
 {
@@ -24,12 +25,23 @@ namespace Basic_Console
                 Console.WriteLine($"共搜索到{result.song.list.Count}个结果");
                 //为了简化示例，就取列表的第一条歌曲
                 var song = result.song.list[0];
-                Hzexe.QQMusic.Model.IFiletype[] type = song.file.GetAvailableFileType();//取当前歌曲可用的类型
+                EnumFileType type = song.file.GetAvailableFileType();//取当前歌曲可用的类型
+                Console.WriteLine(type);
 
                 //获取当前目录用来存放音乐
                 string dir = AppContext.BaseDirectory;
 
-                var t = api.downloadSongAsync(song, dir, type[0]);//建立下载的task,下载文件最大并保存到当前目录
+                //要下载哪种类型的音乐呢？
+                EnumFileType downloadType =0;
+                downloadType &= (type & EnumFileType.Ape);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Flac);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Mp3_320k);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Mp3_128k);
+
+                var t = api.downloadSongAsync(song, dir, downloadType);//建立下载的task,下载文件最大并保存到当前目录
                 //可选:当然也可以尝试lrc的歌词下载下来
                 var t2 = api.downloadLyricAsync(song, dir);
                 Console.WriteLine("Start download:");

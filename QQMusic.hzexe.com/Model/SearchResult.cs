@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using QQMusic.hzexe.com.Utils;
 
 namespace Hzexe.QQMusic.Model
 {
@@ -23,7 +24,7 @@ namespace Hzexe.QQMusic.Model
         public int Switch { get; set; }
     }
 
-    public class Album
+    public class Album : IAlbum
     {
         public int id { get; set; }
         public string mid { get; set; }
@@ -33,7 +34,7 @@ namespace Hzexe.QQMusic.Model
         public string title_hilight { get; set; }
     }
 
-    public partial class File
+    public partial class File : IFile
     {
         public string media_mid { get; set; }
         public int? size_128 { get; set; }
@@ -47,6 +48,37 @@ namespace Hzexe.QQMusic.Model
         public string strMediaMid { get; set; }
         public int? try_begin { get; set; }
         public int? try_end { get; set; }
+        /// <summary>
+        /// 获取当前歌曲可用的格式并按大小降序排列
+        /// </summary>
+        /// <returns></returns>
+        public EnumFileType GetAvailableFileType()
+        {
+            EnumFileType tp = 0;
+            List<IFiletype> list = new List<IFiletype>(5);
+            if ((size_128 ?? 0) > 0)
+                tp |= EnumFileType.Mp3_128k;
+            if ((size_320 ?? 0) > 0)
+                tp |= EnumFileType.Mp3_320k;
+            if ((size_aac ?? 0) > 0)
+            {
+                //
+            }
+            if ((size_ogg ?? 0) > 0)
+            {
+                //
+            }
+            if ((size_dts ?? 0) > 0)
+            {
+                //
+            }
+            if ((size_ape ?? 0) > 0)
+                tp |= EnumFileType.Ape;
+            if ((size_flac ?? 0) > 0)
+                tp |= EnumFileType.Flac;
+            //System.Linq.Expresions.ExpressionCreator < System.Action < System.Object,System.Object >>
+            return tp;
+        }
     }
 
     public class Action2
@@ -207,15 +239,17 @@ namespace Hzexe.QQMusic.Model
         public double peak { get; set; }
     }
 
-    public class SongItem
+    public class SongItem : ISongItem
     {
         public Action1 action { get; set; }
-        public Album album { get; set; }
+        [JsonConverter(typeof(ConcreteTypeConverter<Album>))]
+        public IAlbum album { get; set; }
         public int chinesesinger { get; set; }
         public string desc { get; set; }
         public string desc_hilight { get; set; }
         public string docid { get; set; }
-        public File file { get; set; }
+        [JsonConverter(typeof(ConcreteTypeConverter<File>))]
+        public IFile file { get; set; }
         public int fnote { get; set; }
         public int genre { get; set; }
         public List<Grp> grp { get; set; }
@@ -285,49 +319,5 @@ namespace Hzexe.QQMusic.Model
         //public List<object> taglist { get; set; }
         public int totaltime { get; set; }
         public Zhida zhida { get; set; }
-    }
-    public partial class File
-    {
-        /*
-        public int size_128 { get; set; }
-        public int size_320 { get; set; }
-        public int size_aac { get; set; }
-        public int size_ape { get; set; }
-        public int size_dts { get; set; }
-        public int size_flac { get; set; }
-        public int size_ogg { get; set; }
-        */
-
-        /// <summary>
-        /// 获取当前歌曲可用的格式并按大小降序排列
-        /// </summary>
-        /// <returns></returns>
-        public IFiletype[] GetAvailableFileType()
-        {
-            List<IFiletype> list = new List<IFiletype>(5);
-            if ((size_128??0) > 0)
-                list.Add(new Mp3_128k() { Size = size_128.Value });
-            if ((size_320 ?? 0) > 0)
-                list.Add(new Mp3_320k() { Size = size_320.Value });
-            if ((size_aac ?? 0) > 0)
-            {
-                //
-            }
-            if ((size_ogg ?? 0) > 0)
-            {
-                //
-            }
-            if ((size_dts ?? 0) > 0)
-            {
-                //
-            }
-            if ((size_ape ?? 0) > 0)
-                list.Add(new Ape() { Size = size_ape.Value });
-            if ((size_flac ?? 0) > 0)
-                list.Add(new Flac() { Size = size_flac.Value });
-            //System.Linq.Expresions.ExpressionCreator < System.Action < System.Object,System.Object >>
-            return list.OrderByDescending(x => x.Size).ToArray();
-        }
-
     }
 }

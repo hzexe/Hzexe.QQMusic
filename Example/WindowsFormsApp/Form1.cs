@@ -100,9 +100,9 @@ namespace WindowsFormsApp
                 arg.PageSize = 100;
                 var result = await api.SearchAsync(arg); //搜索搜索并获取结果
 
-                if (result.song.list.Count > 0)
+                if (result.song.list.Count() > 0)
                 {
-                    Console.WriteLine($"共搜索到{result.song.list.Count}个结果");
+                    Console.WriteLine($"共搜索到{result.song.list.Count()}个结果");
 
                     this.tableModelBindingSource.DataSource = result.song.list.Select(x => new TableModel
                     {
@@ -110,16 +110,13 @@ namespace WindowsFormsApp
                         Name = x.name,
                         Singer = string.Join("、", x.singer.Select(xx => xx.name).ToArray()),
                         SongItem = x,
-                        Ape = (x.file.size_ape.HasValue && x.file.size_ape.Value > 0) ? "下载" : null,
-                        Flac = (x.file.size_flac.HasValue && x.file.size_flac.Value > 0) ? "下载" : null,
-                        Mp3_128k = (x.file.size_128.HasValue && x.file.size_128.Value > 0) ? "下载" : null,
-                        Mp3_320k = (x.file.size_320.HasValue && x.file.size_320.Value > 0) ? "下载" : null,
+                        Ape = (x.file.size_ape > 0) ? "下载" : null,
+                        Flac = ( x.file.size_flac > 0) ? "下载" : null,
+                        Mp3_128k = ( x.file.size_128 > 0) ? "下载" : null,
+                        Mp3_320k = ( x.file.size_320 > 0) ? "下载" : null,
                     });
 
 
-                    //为了简化示例，就取列表的第一条歌曲
-                    var song = result.song.list[0];
-                    Hzexe.QQMusic.Model.IFiletype[] type = song.file.GetAvailableFileType();//取当前歌曲可用的类型
                 }
                 else
                 {
@@ -135,39 +132,52 @@ namespace WindowsFormsApp
             Hzexe.QQMusic.Model.SongItem si = (dataGridView1.Rows[e.RowIndex].DataBoundItem as TableModel).SongItem;
             var col = dataGridView1.Columns[e.ColumnIndex];
 
-            Action<IFiletype, SongItem> fun = new Action<IFiletype, SongItem>((ext, obj) =>
+            Action<EnumFileType, SongItem> fun = new Action<EnumFileType, SongItem>((ext, obj) =>
             {
-                string musicfilename = $"{obj.title}-{obj.singer[0].name}.{ext.Suffix}";
+                var att = ext.GetFileType();
+
+                string musicfilename = $"{obj.title}-{obj.singer[0].name}.{att.Suffix}";
                 saveFileDialog1.CheckPathExists = true;
                 saveFileDialog1.CheckFileExists = false;
-                saveFileDialog1.DefaultExt = ext.Suffix;
+                saveFileDialog1.DefaultExt = att.Suffix;
                 saveFileDialog1.OverwritePrompt = true;
                 saveFileDialog1.ValidateNames = true;
                 saveFileDialog1.Tag = new { si = obj, ft = ext };
-                saveFileDialog1.Filter = $"{ext.Suffix}(*.{ext.Suffix})|*.{ext.Suffix}";
+                saveFileDialog1.Filter = $"{att.Suffix}(*.{att.Suffix})|*.{att.Suffix}";
                 saveFileDialog1.FileName = musicfilename;
                 saveFileDialog1.ShowDialog();
             });
 
             if ("Ape" == col.DataPropertyName)
             {
-                fun(new Ape(), si);
+                fun(EnumFileType.Ape, si);
             }
             else if ("Flac" == col.DataPropertyName)
             {
-                fun(new Flac(), si);
+                fun(EnumFileType.Flac, si);
             }
             else if ("Mp3_320k" == col.DataPropertyName)
             {
-                fun(new Mp3_320k(), si);
+                fun(EnumFileType.Mp3_320k, si);
             }
             else if ("Mp3_128k" == col.DataPropertyName)
             {
-                fun(new Mp3_128k(), si);
+                fun(EnumFileType.Mp3_128k, si);
             }
             else if ("Play" == col.DataPropertyName)
             {
-                string url = api.GetDownloadSongUrl(si, si.file.GetAvailableFileType().First());
+                EnumFileType type = si.file.GetAvailableFileType();//取当前歌曲可用的类型
+                EnumFileType downloadType = 0;
+                downloadType &= (type & EnumFileType.Ape);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Flac);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Mp3_320k);
+                if (downloadType == 0)
+                    downloadType &= (type & EnumFileType.Mp3_128k);
+
+
+                string url = api.GetDownloadSongUrl(si, downloadType);
                 mediaPlayer.SetMedia(new Uri(url));
 
                 Task.Run(async () =>
@@ -193,7 +203,7 @@ namespace WindowsFormsApp
         {
             var tag = saveFileDialog1.Tag as dynamic;
             var si = tag.si as SongItem;
-            IFiletype type = tag.ft as IFiletype;
+            EnumFileType type =(EnumFileType) tag.ft ;
 
             Task.Run(async () =>
             {

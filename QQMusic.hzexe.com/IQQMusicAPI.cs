@@ -6,11 +6,11 @@ namespace Hzexe.QQMusic
 {
     public interface IQQMusicAPI
     {
-        Task<bool> downloadLyricAsync(SongItem songItem, Stream outstream);
-        Task<bool> downloadLyricAsync(SongItem songItem, string songdir);
-        Task downloadSongAsync(SongItem songItem, Stream outstream, IFiletype downloadType);
-        Task downloadSongAsync(SongItem songItem, string songdir, IFiletype downloadType);
-        string GetDownloadSongUrl(SongItem songItem, IFiletype downloadType);
-        Task<SearchResult> SearchAsync(SearchArg body);
+        Task<bool> downloadLyricAsync(ISongItem songItem, Stream outstream);
+        Task<bool> downloadLyricAsync(ISongItem songItem, string songdir);
+        Task downloadSongAsync(ISongItem songItem, Stream outstream, EnumFileType downloadType);
+        Task downloadSongAsync(ISongItem songItem, string songdir, EnumFileType downloadType);
+        string GetDownloadSongUrl(in ISongItem songItem, in EnumFileType downloadType);
+        Task<SearchResult> SearchAsync(ISearchArg body);
     }
 }

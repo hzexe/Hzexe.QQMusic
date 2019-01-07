@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Directives>
+  <Application>
+   
+    <Assembly Name="Newtonsoft.Json" Dynamic="Required All"/>
+    <Assembly Name="QQMusic.hzexe.com" Dynamic="Required All">
+      <Type Name="Hzexe.QQMusic.Model.Semantic" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Action1" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Album" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.File" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Action2" Dynamic="Required All" MarshalStructure="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.Album2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.File2" Dynamic="Required All" MarshalStructure="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.Ksong" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Mv" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Pay" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Volume" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Grp" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Ksong2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Mv2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Pay2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Singer2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Singer" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Volume2" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.SongItem" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Song" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.ZhidaMv" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.Zhida" Dynamic="Required All" MarshalStructure="Required All"/>
+      <Type Name="Hzexe.QQMusic.Model.VkeyItem" Dynamic="Required All" MarshalStructure="Required All" />
+      <Type Name="Hzexe.QQMusic.SearchArg" Dynamic="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.SearchResult" Dynamic="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.VkeyResponse" Dynamic="Required All" />
+
+     
+      <Type Name="Hzexe.QQMusic.Model.Singer2[]" Dynamic="Required All" MarshalStructure="Required All"  />
+      <Type Name="Hzexe.QQMusic.Model.SongItem[]" Dynamic="Required All" MarshalStructure="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.ApiResult`1[Hzexe.QQMusic.Model.SearchResult]" Dynamic="Required All" />
+      <Type Name="Hzexe.QQMusic.Model.ApiResult`1[Hzexe.QQMusic.Model.VkeyResponse]" Dynamic="Required All" />
+      
+    </Assembly>
+    <Assembly Name="QQMusic_C_Style_Library" Dynamic="Required All"/>
+    <Assembly Name="System.Linq.Expressions">
+      <Type Name="System.Linq.Expressions.ExpressionCreator`1[[System.Action`2[[System.Object,System.Private.CoreLib],[System.Object,System.Private.CoreLib]],System.Private.CoreLib]]" Dynamic="Required All" />
+    </Assembly>
+   
+  </Application>
+</Directives>
