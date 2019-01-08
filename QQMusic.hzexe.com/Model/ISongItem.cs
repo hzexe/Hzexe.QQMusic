@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using System.Collections.Generic;
 
 namespace Hzexe.QQMusic.Model
 {
@@ -9,6 +12,6 @@ namespace Hzexe.QQMusic.Model
         IFile file { get; set; }
         
         string title { get; set; }
-        List<Singer2> singer { get; set; }
+        Singer2[] singer { get; set; }
     }
 }

@@ -22,8 +22,19 @@ namespace LibTest
             Assert.NotEmpty(result.song.list);
         }
 
+        [Fact]
+        public async void DownloadAsyncTest()
+        {
+            var api = new QQMusicAPI();
+            var arg = new SearchArg() { Keywords = "沙漠骆驼" };
+            arg.PageSize = 30;
+            var result = await api.SearchAsync(arg); //搜索搜索并获取结果
+            Assert.NotNull(result);
+            Assert.NotNull(result.song);
+            Assert.NotEmpty(result.song.list);
+        }
 
-      
+
         /*
         //Volume2
         [Fact]

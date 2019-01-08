@@ -1,4 +1,7 @@
-﻿#include<stdio.h>
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+#include<stdio.h>
 #include<wchar.h>
 
 #ifndef QQMusic_CStyle_LibraryH
@@ -27,8 +30,10 @@ union UnionFileType {
 
 struct Native_SongItem
 {
-	wchar_t file_strMediaMid[16];
+	int id;
+	wchar_t file_strMediaMid[32];
 	wchar_t album_name[64];
+	wchar_t name[64];
 	wchar_t singer_name[64];   //多个用逗号分开
 	UnionFileType fileType;
 };
@@ -53,14 +58,8 @@ wchar_t* test();
 搜索歌曲
 */
 bool SearchMusicByName(SearchArg*, SearchResult*);
+/*下载歌曲到指定目录*/
+bool DownloadMusic(const Native_SongItem* si, const EnumFileType type,const wchar_t* dir,int dirlength);
 
 void testMarshalArray(MarshalArrayTestClass *);
 #endif // !QQMusic_CStyle_LibraryH
-
-
-
-
-
-
-
-

@@ -1,4 +1,8 @@
-﻿using Hzexe.QQMusic;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+
+using Hzexe.QQMusic;
 using Hzexe.QQMusic.Model;
 using QQMusic_C_Style_Library.Model;
 using System;
@@ -12,7 +16,13 @@ namespace QQMusic_C_Style_Library
     {
         static Wrapper()
         {
-            Console.WriteLine("QQMusic_C_Style_Library init success");
+            string copy = @"
+Copyright by hzexe https://github.com/hzexe
+All rights reserved
+See the LICENSE file in the project root for more information.
+";
+
+            Console.WriteLine(copy);
         }
         static void Main(string[] args)
         {
@@ -32,17 +42,45 @@ namespace QQMusic_C_Style_Library
             return SearchMusicByName_Inside(SearchArgPtr, testptr);
         }
 
+        [NativeCallable(EntryPoint = "DownloadMusic", CallingConvention = CallingConvention.StdCall)]
+        public static bool DownloadMusic(IntPtr Native_SongItemPtr, EnumFileType type, IntPtr dirPtr, int dirlength)
+        {
+            return DownloadMusic_Inside(Native_SongItemPtr, type, dirPtr, dirlength);
+        }
+       
+        public static bool DownloadMusic_Inside(IntPtr Native_SongItemPtr, EnumFileType type, IntPtr dirPtr,int dirlength)
+        {
+            try
+            {
+                Native_SongItem nsi = Marshal.PtrToStructure<Native_SongItem>(Native_SongItemPtr);
+                string dir = null;
+                unsafe {
+                    dir = new string((char*)dirPtr.ToPointer(),0,dirlength);
+               }
+                Console.WriteLine($"准备下载{nsi.name}到{dir}");
+                //转换
+                ISongItem si = SearchResultExtend.ToSongItem(nsi);
+                var api = new QQMusicAPI();
+                api.downloadSongAsync(si, dir, type).Wait();
+                api.downloadLyricAsync(si, dir).Wait();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
 
         public static bool SearchMusicByName_Inside(IntPtr SearchArgPtr,IntPtr testptr)
         {
-            Console.WriteLine("SearchArgPtr:{0:X000}", SearchArgPtr);
+            //Console.WriteLine("SearchArgPtr:{0:X}", SearchArgPtr);
             var api = new QQMusicAPI();
-            //var searchArg = Marshal.PtrToStructure<ANative_SearchArg>(SearchArgPtr);
-            //Console.WriteLine("SearchArg:{0}", getJson(searchArg));
-            //searchArg.Keywords = searchArg.Keywords.TrimEnd('\0');
+            var searchArg = Marshal.PtrToStructure<ANative_SearchArg>(SearchArgPtr);
             try
             {
-                SearchResult result = api.SearchAsync(new SearchArg { Keywords="bye bye bye"}).Result;
+                SearchResult result = api.SearchAsync(searchArg).Result;
                 int offset = 0;
                 SearchResultExtend.WriteTo(result, testptr,ref offset);
                 return true;

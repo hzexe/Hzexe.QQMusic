@@ -1,4 +1,7 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("C_Style_LibraryTest")]
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("C_Style_LibraryTest")]
 
 namespace System.Runtime.InteropServices
 {

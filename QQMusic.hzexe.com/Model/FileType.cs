@@ -1,4 +1,7 @@
-﻿using QQMusic.hzexe.com.Model;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using QQMusic.hzexe.com.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

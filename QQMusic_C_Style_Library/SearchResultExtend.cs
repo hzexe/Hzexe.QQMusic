@@ -1,4 +1,7 @@
-﻿using Hzexe.QQMusic.Model;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using Hzexe.QQMusic.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +11,7 @@ using System.Runtime.InteropServices;
 
 namespace QQMusic_C_Style_Library
 {
-    public class SearchResultExtend
+    public static class SearchResultExtend
     {
         /// <summary>
         /// 封装SearchResult到托管字节数组，以避免内存泄露
@@ -51,6 +54,8 @@ namespace QQMusic_C_Style_Library
                            file_strMediaMid = x.file?.strMediaMid,
                            singer_name = string.Join(",", x.singer.Select(xx => xx.name)),
                            fileType = x.file.GetAvailableFileType(),
+                           name=x.name,
+                           id=x.id
                        }
                    )
                    .ToList();
@@ -61,6 +66,34 @@ namespace QQMusic_C_Style_Library
                 offset += itemsSize;
             }
         }
+
+        public static ISongItem ToSongItem(Native_SongItem si)
+        {
+            return new SongItem()
+            {
+                album = new Album() { name = si.album_name.RemoveUnicodeEnd() },
+                file = new File() { strMediaMid=si.file_strMediaMid.RemoveUnicodeEnd() },
+                name=si.name.RemoveUnicodeEnd(),
+                title= si.name.RemoveUnicodeEnd(),
+                singer = si.singer_name.RemoveUnicodeEnd().Split(',').Select(x=>new Singer2 { name=x}).ToArray(),
+            };
+        }
+        /// <summary>
+        /// 去掉marshl unicode字符尾部存在多余字符的情况
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static string RemoveUnicodeEnd(this string p)
+        {
+            if (string.IsNullOrEmpty(p))
+                return p;
+            var spl = "\u0000";
+            int index = p.IndexOf(spl);
+            if (index > -1)
+                return p.Substring(0, index);
+            return p;
+        }
+
 
         private static EnumFileType GetEnumFileType(IFiletype ft)
         {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -72,7 +75,7 @@ namespace Hzexe.QQMusic
         /// <param name="songItem">音乐对象</param>
         /// <param name="downloadType">文件类型</param>
         /// <returns>url</returns>
-        public string GetDownloadSongUrl(in ISongItem songItem,in EnumFileType downloadType)
+        public string GetDownloadSongUrl(in ISongItem songItem, in EnumFileType downloadType)
         {
             if (string.IsNullOrEmpty(vkey))
             {
@@ -80,7 +83,7 @@ namespace Hzexe.QQMusic
                     vkTask.Wait();
                 vkey = vkTask.Result;
             }
-            var att= downloadType.GetFileType();
+            var att = downloadType.GetFileType();
             var url = $"http://streamoc.music.tc.qq.com/{att.Prefix}{songItem.file.strMediaMid}.{att.Suffix}?vkey={vkey}&guid={guid}&uin={uin}&fromtag=8";
             return url;
 
@@ -132,7 +135,7 @@ namespace Hzexe.QQMusic
         public async Task<bool> downloadLyricAsync(ISongItem songItem, string songdir)
         {
             //命名规则
-            string lrcfilename = $"{songItem.title}-{songItem.singer[0].name}.lrc";
+            string lrcfilename = GetInvalidFileName( $"{songItem.title}-{songItem.singer[0].name}.lrc");
             string filefull = System.IO.Path.Combine(songdir, lrcfilename);
             try
             {
@@ -141,7 +144,7 @@ namespace Hzexe.QQMusic
                     return await downloadLyricAsync(songItem, fs);
                 }
             }
-            catch(System.IO.IOException)
+            catch (System.IO.IOException)
             {
                 return false;
             }
@@ -184,8 +187,9 @@ namespace Hzexe.QQMusic
         public async Task downloadSongAsync(ISongItem songItem, string songdir, EnumFileType downloadType)
         {
             var att = downloadType.GetFileType();
+
             //命名规则
-            string musicfilename = $"{songItem.title}-{songItem.singer[0].name}.{att.Suffix}";
+            string musicfilename = GetInvalidFileName( $"{songItem.title}-{songItem.singer[0].name}.{att.Suffix}");
             System.IO.Stream fs = null;
             try
             {
@@ -202,6 +206,30 @@ namespace Hzexe.QQMusic
                 if (null != fs)
                     fs.Dispose();
             }
+        }
+
+        /// <summary>
+        /// 干掉文件名中的非法字符
+        /// </summary>
+        /// <param name="originalFileName"></param>
+        /// <returns></returns>
+        /// <remarks>有些狗B歌名或艺人名字竟然有星号之类的字符</remarks>
+        private string GetInvalidFileName(string originalFileName)
+        {
+            char changed = '_'; //非法字符被替换掉的字符
+            char[] orig = originalFileName.ToCharArray();
+            var cs = System.IO.Path.GetInvalidFileNameChars();
+            unsafe
+            {
+                fixed (char* pch = &orig[0])
+                {
+                    foreach (var invalidch in cs)
+                        for (int i = 0; i < orig.Length; i++)
+                            if (pch[i] == invalidch)
+                                pch[i] = changed;
+                }
+            }
+            return new string(orig);
         }
     }
 }

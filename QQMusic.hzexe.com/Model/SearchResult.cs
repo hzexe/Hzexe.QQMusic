@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -184,7 +187,7 @@ namespace Hzexe.QQMusic.Model
         public long? nt { get; set; }
         public Pay pay { get; set; }
         public long pure { get; set; }
-        public List<Singer> singer { get; set; }
+        public Singer[] singer { get; set; }
         public int? status { get; set; }
         public string subtitle { get; set; }
         public long? t { get; set; }
@@ -269,7 +272,7 @@ namespace Hzexe.QQMusic.Model
         //public object nt { get; set; }
         public Pay2 pay { get; set; }
         public int pure { get; set; }
-        public List<Singer2> singer { get; set; }
+        public Singer2[] singer { get; set; }
         public int status { get; set; }
         public string subtitle { get; set; }
         public int t { get; set; }

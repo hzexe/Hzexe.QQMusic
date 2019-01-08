@@ -1,4 +1,7 @@
-﻿namespace Hzexe.QQMusic
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+namespace Hzexe.QQMusic
 {
     public interface ISearchArg
     {

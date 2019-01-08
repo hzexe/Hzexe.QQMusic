@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
