@@ -18,4 +18,4 @@ script:
  # - dotnet build /p:Configuration=Release  Example/Basic-Console
  # - dotnet build /p:Configuration=Release LibTest
  # - dotnet test LibTest
-   - dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
+ - dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
