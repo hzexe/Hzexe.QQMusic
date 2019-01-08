@@ -14,7 +14,7 @@ install:
 #  - dotnet restore -s QQMusic_Native_Library/nuget.config
 
 script:
-  - dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
+ # - dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
   - dotnet build -f netstandard1.6 /p:Configuration=Release QQMusic.hzexe.com
   - dotnet build -f netstandard2.0 /p:Configuration=Release QQMusic.hzexe.com
   
