@@ -23,7 +23,7 @@ for:
     only:
       - image: Ubuntu1804
   init:
-    - sh: sudo apt-get update && apt install clang-3.9
+    - sh: sudo apt-get update && apt install -y clang-3.9
   clone_folder: /home/appveyor/projects/
   build_script:
     - sh: dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
