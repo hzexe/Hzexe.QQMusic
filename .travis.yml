@@ -10,7 +10,7 @@ before_install:
   - export PATH=$PATH:$HOME/dotnet
 
 install:
-   - dotnet restore
+   - dotnet restore -s QQMusic_Native_Library/nuget.config
 
 script:
   - dotnet build -f netstandard1.6 /p:Configuration=Release QQMusic.hzexe.com
@@ -18,3 +18,4 @@ script:
  # - dotnet build /p:Configuration=Release  Example/Basic-Console
  # - dotnet build /p:Configuration=Release LibTest
  # - dotnet test LibTest
+   - dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
