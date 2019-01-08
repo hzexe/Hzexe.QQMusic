@@ -1,0 +1,1 @@
+﻿dotnet publish /p:NativeLib=Shared -r linux-x64 -c release

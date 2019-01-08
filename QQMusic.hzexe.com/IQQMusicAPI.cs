@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using System.IO;
 using System.Threading.Tasks;
 using Hzexe.QQMusic.Model;
 
@@ -6,11 +9,11 @@ namespace Hzexe.QQMusic
 {
     public interface IQQMusicAPI
     {
-        Task<bool> downloadLyricAsync(SongItem songItem, Stream outstream);
-        Task<bool> downloadLyricAsync(SongItem songItem, string songdir);
-        Task downloadSongAsync(SongItem songItem, Stream outstream, IFiletype downloadType);
-        Task downloadSongAsync(SongItem songItem, string songdir, IFiletype downloadType);
-        string GetDownloadSongUrl(SongItem songItem, IFiletype downloadType);
-        Task<SearchResult> SearchAsync(SearchArg body);
+        Task<bool> downloadLyricAsync(ISongItem songItem, Stream outstream);
+        Task<bool> downloadLyricAsync(ISongItem songItem, string songdir);
+        Task downloadSongAsync(ISongItem songItem, Stream outstream, EnumFileType downloadType);
+        Task downloadSongAsync(ISongItem songItem, string songdir, EnumFileType downloadType);
+        string GetDownloadSongUrl(in ISongItem songItem, in EnumFileType downloadType);
+        Task<SearchResult> SearchAsync(ISearchArg body);
     }
 }

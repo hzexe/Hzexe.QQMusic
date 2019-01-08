@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Copyright by hzexe https://github.com/hzexe
+//All rights reserved
+//See the LICENSE file in the project root for more information.
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -7,6 +10,8 @@ using Hzexe.QQMusic.Model;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using QQMusic.hzexe.com.Model;
+
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LibTest")]
 namespace Hzexe.QQMusic
 {
@@ -46,7 +51,7 @@ namespace Hzexe.QQMusic
         /// <param name="body"></param>
         /// <returns></returns>
         /// <exception cref="QQMusicAPIException"></exception>
-        public async Task<SearchResult> SearchAsync(SearchArg body)
+        public async Task<SearchResult> SearchAsync(ISearchArg body)
         {
             var url = $"http://c.y.qq.com/soso/fcgi-bin/client_search_cp?ct=24&qqmusic_ver=1298&new_json=1&remoteplace=txt.yqq.center&t=0&aggr=1&cr=1&catZhida=1&lossless=0&flag_qc=0&p={body.Page}&n={body.PageSize}&w={body.Keywords}&jsonpCallback=searchCallbacksong2020&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0";
             return await GetHttpAsync<SearchResult>(url);
@@ -70,7 +75,7 @@ namespace Hzexe.QQMusic
         /// <param name="songItem">音乐对象</param>
         /// <param name="downloadType">文件类型</param>
         /// <returns>url</returns>
-        public string GetDownloadSongUrl(SongItem songItem, IFiletype downloadType)
+        public string GetDownloadSongUrl(in ISongItem songItem, in EnumFileType downloadType)
         {
             if (string.IsNullOrEmpty(vkey))
             {
@@ -78,7 +83,8 @@ namespace Hzexe.QQMusic
                     vkTask.Wait();
                 vkey = vkTask.Result;
             }
-            var url = $"http://streamoc.music.tc.qq.com/{downloadType.Prefix}{songItem.file.strMediaMid}.{downloadType.Suffix}?vkey={vkey}&guid={guid}&uin={uin}&fromtag=8";
+            var att = downloadType.GetFileType();
+            var url = $"http://streamoc.music.tc.qq.com/{att.Prefix}{songItem.file.strMediaMid}.{att.Suffix}?vkey={vkey}&guid={guid}&uin={uin}&fromtag=8";
             return url;
 
         }
@@ -89,12 +95,10 @@ namespace Hzexe.QQMusic
         /// <param name="songItem"></param>
         /// <param name="outstream">存放的流</param>
         /// <returns>是否成功</returns>
-        public async Task<bool> downloadLyricAsync(SongItem songItem, System.IO.Stream outstream)
+        public async Task<bool> downloadLyricAsync(ISongItem songItem, System.IO.Stream outstream)
         {
             int songid = songItem.id;
             var url = $"https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime={DateTime.Now.ToFileTimeUtc()}&songmid={songItem.file.strMediaMid}&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
-            //命名规则
-            string lrcfilename = $"{songItem.title}-{songItem.singer[0].name}.lrc";
             var clinet = new HttpClient();
             clinet.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
             clinet.DefaultRequestHeaders.Add("referer", "https://y.qq.com/portal/player.html");
@@ -109,7 +113,6 @@ namespace Hzexe.QQMusic
                     var bstr = res.lyric;
                     var data = Convert.FromBase64String(bstr);
                     await outstream.WriteAsync(data, 0, data.Length);
-                    // System.IO.File.WriteAllBytes(lrcfilename, data);
                 }
                 return res.code == 0;
             }
@@ -129,36 +132,21 @@ namespace Hzexe.QQMusic
         /// <param name="songItem"></param>
         /// <param name="songdir"></param>
         /// <returns>是否成功</returns>
-        public async Task<bool> downloadLyricAsync(SongItem songItem, string songdir)
+        public async Task<bool> downloadLyricAsync(ISongItem songItem, string songdir)
         {
-            int songid = songItem.id;
-            var url = $"https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime={DateTime.Now.ToFileTimeUtc()}&songmid={songItem.file.strMediaMid}&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
             //命名规则
-            string lrcfilename = $"{songItem.title}-{songItem.singer[0].name}.lrc";
-            var clinet = new HttpClient();
-            clinet.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
-            clinet.DefaultRequestHeaders.Add("referer", "https://y.qq.com/portal/player.html");
-
+            string lrcfilename = GetInvalidFileName( $"{songItem.title}-{songItem.singer[0].name}.lrc");
+            string filefull = System.IO.Path.Combine(songdir, lrcfilename);
             try
             {
-                var response = await clinet.GetAsync(url);
-                var json = await response.Content.ReadAsStringAsync();
-                var res = JsonConvert.DeserializeObject<LyricResult>(json);
-                if (res.code == 0)
+                using (var fs = System.IO.File.OpenWrite(filefull))
                 {
-                    var bstr = res.lyric;
-                    var data = Convert.FromBase64String(bstr);
-                    System.IO.File.WriteAllBytes(lrcfilename, data);
+                    return await downloadLyricAsync(songItem, fs);
                 }
-                return res.code == 0;
             }
-            catch
+            catch (System.IO.IOException)
             {
                 return false;
-            }
-            finally
-            {
-                clinet.Dispose();
             }
         }
 
@@ -170,7 +158,7 @@ namespace Hzexe.QQMusic
         /// <param name="vkey">音乐对象</param>
         /// <param name="downloadType">文件类型</param>
         /// <returns>Task</returns>
-        public async Task downloadSongAsync(SongItem songItem, System.IO.Stream outstream, IFiletype downloadType)
+        public async Task downloadSongAsync(ISongItem songItem, System.IO.Stream outstream, EnumFileType downloadType)
         {
             var url = GetDownloadSongUrl(songItem, downloadType);
             var clinet = new HttpClient();
@@ -196,10 +184,12 @@ namespace Hzexe.QQMusic
         /// <param name="songdir">存放指定的目录</param>
         /// <param name="downloadType">文件类型</param>
         /// <returns>Task</returns>
-        public async Task downloadSongAsync(SongItem songItem, string songdir, IFiletype downloadType)
+        public async Task downloadSongAsync(ISongItem songItem, string songdir, EnumFileType downloadType)
         {
+            var att = downloadType.GetFileType();
+
             //命名规则
-            string musicfilename = $"{songItem.title}-{songItem.singer[0].name}.{downloadType.Suffix}";
+            string musicfilename = GetInvalidFileName( $"{songItem.title}-{songItem.singer[0].name}.{att.Suffix}");
             System.IO.Stream fs = null;
             try
             {
@@ -217,13 +207,29 @@ namespace Hzexe.QQMusic
                     fs.Dispose();
             }
         }
-    }
 
-
-    public class SearchArg
-    {
-        public int Page { get; set; } = 0;
-        public int PageSize { get; set; } = 400;
-        public string Keywords { get; set; }
+        /// <summary>
+        /// 干掉文件名中的非法字符
+        /// </summary>
+        /// <param name="originalFileName"></param>
+        /// <returns></returns>
+        /// <remarks>有些狗B歌名或艺人名字竟然有星号之类的字符</remarks>
+        private string GetInvalidFileName(string originalFileName)
+        {
+            char changed = '_'; //非法字符被替换掉的字符
+            char[] orig = originalFileName.ToCharArray();
+            var cs = System.IO.Path.GetInvalidFileNameChars();
+            unsafe
+            {
+                fixed (char* pch = &orig[0])
+                {
+                    foreach (var invalidch in cs)
+                        for (int i = 0; i < orig.Length; i++)
+                            if (pch[i] == invalidch)
+                                pch[i] = changed;
+                }
+            }
+            return new string(orig);
+        }
     }
 }
