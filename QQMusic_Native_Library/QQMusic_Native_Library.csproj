@@ -12,6 +12,16 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="QQMusic_Native_Library.h" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="QQMusic_Native_Library.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 
   <ItemGroup>
