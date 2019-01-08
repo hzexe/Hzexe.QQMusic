@@ -57,7 +57,7 @@ See the LICENSE file in the project root for more information.
                 unsafe {
                     dir = new string((char*)dirPtr.ToPointer(),0,dirlength);
                }
-                Console.WriteLine($"准备下载{nsi.name}到{dir}");
+                Console.WriteLine($"准备下载{nsi.name.RemoveUnicodeEnd()}到{dir}");
                 //转换
                 ISongItem si = SearchResultExtend.ToSongItem(nsi);
                 var api = new QQMusicAPI();
