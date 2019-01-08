@@ -4,9 +4,9 @@
 [![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-blue.svg)](https://t.me/hzexe)
 [![license](https://img.shields.io/github/license/hzexe/Hzexe.QQMusic.svg)](https://raw.githubusercontent.com/hzexe/Hzexe.QQMusic/master/LICENSE)
 
-|Package|Branch|Visual Studio 2017|Linux .Net Core|
-|:-----:|:----:|:---:|:---:|
-| [NuGet ![NuGet Release](https://img.shields.io/nuget/vpre/QQMusicLib.svg?label=QQMusicLib&maxAge=3600)](https://www.nuget.org/packages/QQMusicLib/) | `master` |  [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI?branchName=master)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1) | [![Build Status](https://travis-ci.com/hzexe/Hzexe.QQMusic.svg?branch=master)](https://travis-ci.com/hzexe/Hzexe.QQMusic) |
+|Package|Branch|Visual Studio 2017|Linux .Net Core|多平台Native库|
+|:-----:|:----:|:---:|:---:|:---:|
+| [NuGet ![NuGet Release](https://img.shields.io/nuget/vpre/QQMusicLib.svg?label=QQMusicLib&maxAge=3600)](https://www.nuget.org/packages/QQMusicLib/) | `master` |  [![Build status](https://hzexe.visualstudio.com/Hzexe.QQMusic/_apis/build/status/Hzexe.QQMusic-.NET%20Desktop-CI?branchName=master)](https://hzexe.visualstudio.com/Hzexe.QQMusic/_build/latest?definitionId=1) | [![Build Status](https://travis-ci.com/hzexe/Hzexe.QQMusic.svg?branch=master)](https://travis-ci.com/hzexe/Hzexe.QQMusic) | [![Build status](https://ci.appveyor.com/api/projects/status/6y3vc0nbnuua6cx6/branch/master?svg=true)](https://ci.appveyor.com/project/hzexe/hzexe-qqmusic/branch/master) |
 
 ## 功能
 * 按歌名搜索
@@ -67,6 +67,15 @@ svn checkout https://github.com/hzexe/Hzexe.QQMusic.git
 ```bash
             dotnet build -f netstandard1.6 QQMusic.hzexe.com
 ```
+    3.Native库编译
+	  .net core下执行:<br />
+```bash
+            dotnet publish /p:NativeLib=Shared -r win-x64 -c release QQMusic_Native_Library
+```
+      其中参数值NativeLib可以为Static 为静态库<br />
+	  其中-r参数是你要的目标运行时，win-x64 linux-x64  osx-x64 android等,更多见[RID Catalog](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog)。<br />
+	  win-x64有个使用native库的[vc示例](https://github.com/hzexe/Hzexe.QQMusic/tree/master/Example/Windows_x64) <br />
+	  可能是CoreRT还没有Release的原因，分别在ubuntu和windows下尝试交叉编译失败。
 
 ## 其它
 限技术交流,不对使用本库后果负责

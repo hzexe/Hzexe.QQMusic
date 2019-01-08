@@ -7,7 +7,7 @@ deploy: off
 skip_tags: true
 image:
  - Visual Studio 2017
- - Ubuntu1804
+ - Ubuntu
 
 clone_folder: c:\project\Hzexe.QQMusic
 build_script:
@@ -21,7 +21,7 @@ for:
 -
   matrix:
     only:
-      - image: Ubuntu1804
+      - image: Ubuntu
   init:
     - sh: sudo apt-get update && apt install -y clang-3.9
   clone_folder: /home/appveyor/projects/
