@@ -1,8 +1,24 @@
 version: 1.0.{build}
-image: Visual Studio 2017
-clone_folder: c:\project\Hzexe.QQMusic
-before_build:
-- cmd: nuget restore
+configuration: Release
 build:
   verbosity: minimal
 deploy: off
+
+
+for:
+-
+  image: Visual Studio 2017
+  clone_folder: c:\project\Hzexe.QQMusic
+  build_script:
+    - cmd: dotnet publish /p:NativeLib=Shared -r win-x64 -c release QQMusic_Native_Library
+  artifacts:
+    - path: ./QQMusic_Native_Library/bin/release
+      name: Hzexe.QQMusic_release_win-x64
+
+  image: Ubuntu1804
+  clone_folder: /home/appveyor/projects/
+  build_script:
+    - sh: dotnet publish /p:NativeLib=Shared -r linux-x64 -c release QQMusic_Native_Library
+  artifacts:
+    - path: ./QQMusic_Native_Library/bin/release
+      name: Hzexe.QQMusic_release_linux-x64
