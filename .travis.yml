@@ -4,6 +4,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y wget
   - sudo apt-get install -y tar
+  - sudo apt-get install -y clang-3.9
   - wget https://download.visualstudio.microsoft.com/download/pr/9f071c35-36b4-48c9-bcc2-b381ecb6cada/5be4784f19c28cb58f8c79219347201a/dotnet-sdk-3.0.100-preview-009812-linux-x64.tar.gz
   - mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-3.0.100-preview-009812-linux-x64.tar.gz -C $HOME/dotnet
   - export DOTNET_ROOT=$HOME/dotnet
