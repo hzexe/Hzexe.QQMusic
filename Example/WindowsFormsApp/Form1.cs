@@ -171,13 +171,13 @@ namespace WindowsFormsApp
             {
                 EnumFileType type = si.file.GetAvailableFileType();//取当前歌曲可用的类型
                 EnumFileType downloadType = 0;
-                downloadType &= (type & EnumFileType.Ape);
+                downloadType |= (type & EnumFileType.Ape);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Flac);
+                    downloadType |= (type & EnumFileType.Flac);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Mp3_320k);
+                    downloadType |= (type & EnumFileType.Mp3_320k);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Mp3_128k);
+                    downloadType |= (type & EnumFileType.Mp3_128k);
 
 
                 string url = api.GetDownloadSongUrl(si, downloadType);
@@ -213,7 +213,7 @@ namespace WindowsFormsApp
                 var stream = saveFileDialog1.OpenFile();
                 await api.downloadSongAsync(si, stream, type);
                 stream.Dispose();
-                //await api.downloadLyricAsync(si, new FileInfo(saveFileDialog1.FileName).Directory.FullName);
+               await api.downloadLyricAsync(si, new FileInfo(saveFileDialog1.FileName).Directory.FullName);
                 MessageBox.Show("下载完成");
             });
 

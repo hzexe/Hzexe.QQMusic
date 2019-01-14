@@ -36,13 +36,13 @@ namespace Basic_Console
 
                 //要下载哪种类型的音乐呢？
                 EnumFileType downloadType =0;
-                downloadType &= (type & EnumFileType.Ape);
+                downloadType |= (type & EnumFileType.Ape);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Flac);
+                    downloadType |= (type & EnumFileType.Flac);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Mp3_320k);
+                    downloadType |= (type & EnumFileType.Mp3_320k);
                 if (downloadType == 0)
-                    downloadType &= (type & EnumFileType.Mp3_128k);
+                    downloadType |= (type & EnumFileType.Mp3_128k);
 
                 var t = api.downloadSongAsync(song, dir, downloadType);//建立下载的task,下载文件最大并保存到当前目录
                 //可选:当然也可以尝试lrc的歌词下载下来
