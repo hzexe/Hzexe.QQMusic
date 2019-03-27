@@ -8,10 +8,6 @@
     <StartupObject />
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\QQMusic.hzexe.com\QQMusic.hzexe.com.csproj" />
-  </ItemGroup>
 <!--
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-*" />
@@ -23,6 +19,9 @@
 -->
   <ItemGroup>
     <IlcArg Include="--stacktracedata" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="QQMusicLib" Version="0.1.1" />
   </ItemGroup>
 
 </Project>
