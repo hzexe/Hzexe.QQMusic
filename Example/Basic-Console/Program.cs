@@ -43,6 +43,8 @@ namespace Basic_Console
                     downloadType |= (type & EnumFileType.Mp3_320k);
                 if (downloadType == 0)
                     downloadType |= (type & EnumFileType.Mp3_128k);
+                if (downloadType == 0)
+                    downloadType |= (type & EnumFileType.M4a);
 
                 var t = api.downloadSongAsync(song, dir, downloadType);//建立下载的task,下载文件最大并保存到当前目录
                 //可选:当然也可以尝试lrc的歌词下载下来

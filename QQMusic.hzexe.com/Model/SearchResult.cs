@@ -65,7 +65,7 @@ namespace Hzexe.QQMusic.Model
                 tp |= EnumFileType.Mp3_320k;
             if ((size_aac ?? 0) > 0)
             {
-                //
+                tp |= EnumFileType.M4a;
             }
             if ((size_ogg ?? 0) > 0)
             {

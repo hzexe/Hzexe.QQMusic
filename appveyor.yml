@@ -8,6 +8,15 @@ skip_tags: true
 image:
  - Visual Studio 2017
  - Ubuntu
+ language: csharp
+mono: 5.4.0
+dotnet: 2.2.1
+os:
+  - linux
+  - osx
+sudo: false
+dist: trusty
+osx_image: xcode9.1
 
 clone_folder: c:\project\Hzexe.QQMusic
 build_script:
@@ -16,6 +25,10 @@ artifacts:
  - path: ./QQMusic_Native_Library/bin/release
    name: Hzexe.QQMusic_release_win-x64
 
+addons:
+  apt:
+    sources:
+    packages:
 
 for:
 -
@@ -23,6 +36,7 @@ for:
     only:
       - image: Ubuntu
   init:
+    - sh: sudo apt-get update && sudo apt-get install -y apt-transport-https && sudo apt-get update && apt install -y clang-3.9
     - sh: sudo apt-get update && sudo apt-get install -y apt-transport-https && sudo apt-get update && apt install -y clang-3.9
   clone_folder: /home/appveyor/projects/
   build_script:

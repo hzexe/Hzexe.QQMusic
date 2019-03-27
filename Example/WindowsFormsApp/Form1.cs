@@ -117,6 +117,7 @@ namespace WindowsFormsApp
                         Flac = ( x.file.size_flac > 0) ? "下载" : null,
                         Mp3_128k = ( x.file.size_128 > 0) ? "下载" : null,
                         Mp3_320k = ( x.file.size_320 > 0) ? "下载" : null,
+                        M4a = (x.file.size_aac > 0) ? "下载" : null,
                     });
 
 
@@ -167,6 +168,10 @@ namespace WindowsFormsApp
             {
                 fun(EnumFileType.Mp3_128k, si);
             }
+            else if ("M4a" == col.DataPropertyName)
+            {
+                fun(EnumFileType.M4a, si);
+            }
             else if ("Play" == col.DataPropertyName)
             {
                 EnumFileType type = si.file.GetAvailableFileType();//取当前歌曲可用的类型
@@ -178,6 +183,9 @@ namespace WindowsFormsApp
                     downloadType |= (type & EnumFileType.Mp3_320k);
                 if (downloadType == 0)
                     downloadType |= (type & EnumFileType.Mp3_128k);
+                if (downloadType == 0)
+                    downloadType |= (type & EnumFileType.M4a);
+
 
 
                 string url = api.GetDownloadSongUrl(si, downloadType);

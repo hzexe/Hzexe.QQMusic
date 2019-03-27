@@ -49,6 +49,8 @@ int main()
 			downloadType = Flac;
 		else if (type&Mp3_320k)
 			downloadType = Mp3_320k;
+		else if (type&m4a)
+			downloadType = m4a;
 		else
 			downloadType = Mp3_128k;
 		const wchar_t dir[] = L"./"; //下载存放的目录

@@ -84,7 +84,7 @@ namespace Hzexe.QQMusic
                 vkey = vkTask.Result;
             }
             var att = downloadType.GetFileType();
-            var url = $"http://streamoc.music.tc.qq.com/{att.Prefix}{songItem.file.strMediaMid}.{att.Suffix}?vkey={vkey}&guid={guid}&uin={uin}&fromtag=8";
+            var url = $"http://183.131.60.16/amobile.music.tc.qq.com/{att.Prefix}{songItem.file.strMediaMid}.{att.Suffix}?vkey={vkey}&guid={guid}&uin={uin}&fromtag=8";
             return url;
 
         }
@@ -98,7 +98,7 @@ namespace Hzexe.QQMusic
         public async Task<bool> downloadLyricAsync(ISongItem songItem, System.IO.Stream outstream)
         {
             int songid = songItem.id;
-            var url = $"https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime={DateTime.Now.ToFileTimeUtc()}&songmid={songItem.file.strMediaMid}&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
+            var url = $"https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_yqq.fcg?nobase64=0&musicid={songid}&-=jsonp1&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
             var clinet = new HttpClient();
             clinet.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
             clinet.DefaultRequestHeaders.Add("referer", "https://y.qq.com/portal/player.html");

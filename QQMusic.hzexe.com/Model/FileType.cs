@@ -25,6 +25,8 @@ namespace Hzexe.QQMusic.Model
         Mp3_320k = 8,
         [FileType("M500", "ape")]
         Mp3_128k = 16,
+        [FileType("C400", "m4a")]
+        M4a = 32,
     }
 
 
@@ -98,6 +100,19 @@ namespace Hzexe.QQMusic.Model
         private string _Prefix = "M500";
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
         private string _Suffix = "mp3";
+
+        public string Prefix { get => _Prefix; }
+        public string Suffix { get => _Suffix; }
+        public int Size { get; set; }
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public class M4a : IFiletype
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+        private string _Prefix = "C400";
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
+        private string _Suffix = "m4a";
 
         public string Prefix { get => _Prefix; }
         public string Suffix { get => _Suffix; }

@@ -6,12 +6,21 @@
 
 #ifndef QQMusic_CStyle_LibraryH
 #define QQMusic_CStyle_LibraryH
+
+#ifdef WIN32
+#define t_wchar_t wchar_t
+#else // LINUX unix macos
+#define t_wchar_t short
+#endif
+
+
+
 /*按音乐名搜索的参数*/
 struct SearchArg
 {
 	int page;   /*页码*/
 	int pageSize;  /*每页最多数量*/
-	wchar_t keywords[64];     /*歌曲名搜索关键字*/
+	t_wchar_t keywords[64];     /*歌曲名搜索关键字*/
 };
 
 enum EnumFileType //: int //C可能不支持这种写法，用下面的UnionFileType hack
@@ -20,6 +29,7 @@ enum EnumFileType //: int //C可能不支持这种写法，用下面的UnionFile
 	Flac = 0x00000004,
 	Mp3_320k = 0x00000008,
 	Mp3_128k = 0x00000010,
+	m4a = 0x00000020,
 };
 
 /*用来确保有与int占用相同的字节 */
@@ -31,10 +41,10 @@ union UnionFileType {
 struct Native_SongItem
 {
 	int id;
-	wchar_t file_strMediaMid[32];
-	wchar_t album_name[64];
-	wchar_t name[64];
-	wchar_t singer_name[64];   //多个用逗号分开
+	t_wchar_t file_strMediaMid[32];
+	t_wchar_t album_name[64];
+	t_wchar_t name[64];
+	t_wchar_t singer_name[64];   //多个用逗号分开
 	UnionFileType fileType;
 };
 
@@ -53,13 +63,13 @@ struct MarshalArrayTestClass
 
 
 //测试
-wchar_t* test();
+t_wchar_t* test();
 /*
 搜索歌曲
 */
 bool SearchMusicByName(SearchArg*, SearchResult*);
 /*下载歌曲到指定目录*/
-bool DownloadMusic(const Native_SongItem* si, const EnumFileType type,const wchar_t* dir,int dirlength);
+bool DownloadMusic(const Native_SongItem* si, const EnumFileType type,const t_wchar_t* dir,int dirlength);
 
 void testMarshalArray(MarshalArrayTestClass *);
 #endif // !QQMusic_CStyle_LibraryH

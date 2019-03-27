@@ -107,6 +107,8 @@ namespace QQMusic_Native_Library
                     return EnumFileType.Mp3_320k;
                 case "M500":
                     return EnumFileType.Mp3_128k;
+                case "C400":
+                    return EnumFileType.M4a;
                 default:
                     throw new NotImplementedException("未实现的媒体格式");
             }

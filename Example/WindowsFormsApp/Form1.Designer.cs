@@ -30,31 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.albumNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.singerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mp3_128k = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Mp3_320k = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Ape = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Flac = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Play = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tableModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.tableModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.albumNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.singerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mp3_128k = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Mp3_320k = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.M4a = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Ape = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Flac = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Play = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -76,6 +77,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(712, 265);
             this.splitContainer1.SplitterDistance = 47;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(633, 17);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "GitHub";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // textBox1
             // 
@@ -109,6 +121,7 @@
             this.singerDataGridViewTextBoxColumn,
             this.Mp3_128k,
             this.Mp3_320k,
+            this.M4a,
             this.Ape,
             this.Flac,
             this.Play});
@@ -122,6 +135,44 @@
             this.dataGridView1.Size = new System.Drawing.Size(712, 214);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Title = "选择保存的路径和文件名";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.Sfd_FileOk);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 277);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusLabel1.Text = "就绪";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(18, 17);
+            this.toolStripStatusLabel2.Text = "--";
+            // 
+            // tableModelBindingSource
+            // 
+            this.tableModelBindingSource.DataSource = typeof(WindowsFormsApp.TableModel);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -158,6 +209,15 @@
             this.Mp3_320k.Name = "Mp3_320k";
             this.Mp3_320k.ReadOnly = true;
             // 
+            // M4a
+            // 
+            this.M4a.DataPropertyName = "M4a";
+            this.M4a.HeaderText = "M4a";
+            this.M4a.Name = "M4a";
+            this.M4a.ReadOnly = true;
+            this.M4a.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.M4a.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // Ape
             // 
             this.Ape.DataPropertyName = "Ape";
@@ -179,55 +239,6 @@
             this.Play.Name = "Play";
             this.Play.ReadOnly = true;
             // 
-            // tableModelBindingSource
-            // 
-            this.tableModelBindingSource.DataSource = typeof(WindowsFormsApp.TableModel);
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Title = "选择保存的路径和文件名";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.Sfd_FileOk);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 277);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
-            this.toolStripStatusLabel1.Text = "就绪";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(18, 17);
-            this.toolStripStatusLabel2.Text = "--";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(633, 17);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(41, 12);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "GitHub";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -243,9 +254,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,20 +268,21 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn albumNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn singerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewLinkColumn Mp3_128k;
-        private System.Windows.Forms.DataGridViewLinkColumn Mp3_320k;
-        private System.Windows.Forms.DataGridViewLinkColumn Ape;
-        private System.Windows.Forms.DataGridViewLinkColumn Flac;
-        private System.Windows.Forms.DataGridViewButtonColumn Play;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn albumNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn singerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn Mp3_128k;
+        private System.Windows.Forms.DataGridViewLinkColumn Mp3_320k;
+        private System.Windows.Forms.DataGridViewLinkColumn M4a;
+        private System.Windows.Forms.DataGridViewLinkColumn Ape;
+        private System.Windows.Forms.DataGridViewLinkColumn Flac;
+        private System.Windows.Forms.DataGridViewButtonColumn Play;
     }
 }
 

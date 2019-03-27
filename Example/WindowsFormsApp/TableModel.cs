@@ -25,6 +25,8 @@ namespace WindowsFormsApp
         public string Flac { get; set; }
         [DisplayName("Mp3_320k")]
         public string Mp3_320k { get; set; }
+        [DisplayName("M4a")]
+        public string M4a { get; set; }
         [DisplayName("Api格式")]
         public string Mp3_128k { get; set; }
         [DisplayName("高质量试听")]
