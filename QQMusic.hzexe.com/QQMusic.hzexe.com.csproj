@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.6;netstandard2.0;net45;net451;net452;net46;net461</TargetFrameworks>
     <Title>Download music from QQ music</Title>
-    <Version>0.1</Version>
-    <AssemblyVersion>0.1.*</AssemblyVersion>
+    <Version>0.1.1</Version>
+    <AssemblyVersion>0.1.1.*</AssemblyVersion>
     <PackageId>QQMusicLib</PackageId>
     <Authors>Hzexe</Authors>
     <Company />
